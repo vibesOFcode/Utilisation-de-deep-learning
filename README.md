@@ -1,15 +1,25 @@
 # Deep Learning Project for Geometric and Spectral Image Classification
 
-Ce dépôt contient une implémentation de modèles de deep learning pour la classification d'images en combinant des informations géométriques et spectrales.
+This project explores the use of deep learning for automated analysis of brain tumor
+MRI images by combining geometric and frequency domains. Addressing the challenges
+of computer-aided medical diagnosis, we propose an innovative approach that simulta-
+neously exploits traditional spatial features and spectral information obtained through
+Fourier transformation.
+Our developed system is based on a hybrid convolutional neural network architecture
+composed of two parallel branches. The first branch, dedicated to geometric analysis,
+processes MRI images in their native spatial representation to extract morphological
+features such as shapes, contours, and textures. The second branch, focused on frequency
+analysis, applies Fast Fourier Transform (FFT) to capture periodic patterns and textural
+signatures not apparent in the spatial domain.
+The dataset used, consisting of 7,022 MRI images, comprises four distinct clinical
+classes : gliomas, meningiomas, pituitary tumors, and no-tumor cases. Each image under-
+goes specific preprocessing according to the concerned branch, including normalization,
+resizing, and augmentation for the geometric branch, as well as FFT transformation,
+spectral centering, and magnitude extraction for the frequency branch.
+This study demonstrates the potential of the multi-domain approach for improving
+automated brain tumor diagnosis, paving the way for promising clinical applications in
+the field of AI-assisted radiology.
 
-## Objectif du projet
-
-Le projet vise à explorer une approche de fusion de deux branches de réseaux de neurones :
-
-- une branche géométrique basée sur l'image originale,
-- une branche spectrale basée sur la transformée de Fourier de l'image.
-
-L'idée est d'utiliser les deux types de représentations pour améliorer la capacité du modèle à distinguer les classes.
 
 ## Structure du dépôt
 
@@ -20,15 +30,37 @@ L'idée est d'utiliser les deux types de représentations pour améliorer la cap
 - `Partitionnement.py` : utilitaires pour le partitionnement, la normalisation et la préparation des données.
 - `README.md` : documentation du projet.
 
-## Dépendances
+## Réseaux CNN pour la détection de tumeurs
 
-Ce projet utilise généralement :
+Plusieurs architectures CNN ont été adoptées avec succès pour les tâches de classifi-
+cation et segmentation des tumeurs :
+• U-Net : Architecture conçue spécifiquement pour la segmentation biomédicale. Elle
+repose sur une structure en “U” avec des chemins d’encodage (compression) et de
+décodage (décompression), facilitant la localisation précise des régions tumorales.
+• ResNet : Introduit des connexions résiduelles qui permettent de construire des
+réseaux très profonds sans souffrir du problème de dégradation des performances.
+ResNet est souvent utilisé pour la classification de tumeurs.
+• VGG : Réseau profond basé sur des couches convolutives empilées avec des filtres
+de petite taille (3x3). Bien que plus coûteux en calculs, il fournit de bonnes perfor-
+mances de base pour la reconnaissance d’images médicales.
 
-- Python 3.9+
-- TensorFlow / Keras
-- NumPy
-- OpenCV
-- scikit-learn (si utilisé pour le train/test split)
+###Analyse fréquentielle appliquée aux images médicales
+
+Outre les approches basées sur les caractéristiques spatiales, l’analyse fréquentielle
+représente une autre stratégie pertinente. Elle consiste à transformer l’image dans le
+domaine des fréquences, souvent via la Fast Fourier Transform (FFT), afin de capturer
+des motifs globaux, des textures ou des informations structurelles qui peuvent être moins
+visibles dans le domaine spatial.
+
+###Technologies utilisées
+
+• Python 3.10 : langage principal de développement.
+• TensorFlow & Keras : pour la conception, l’entraînement et l’évaluation des
+modèles de deep learning.
+• NumPy & OpenCV : pour la manipulation des images et la transformation de
+Fourier.
+• Matplotlib & Seaborn : pour la visualisation des résultats.
+
 
 ### Installation
 
